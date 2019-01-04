@@ -3,7 +3,7 @@
 //
 
 #include <vector>
-#include "Expressions/ShantingYardAlgorithem.h"
+#include "ShantingYardAlgorithem.h"
 #include "EqualCommand.h"
 #include "SymbolTable.h"
 #include "CommandsInterpreter.h"

@@ -6,7 +6,7 @@
 #include <map>
 #include "ConditionCommand.h"
 #include "SymbolTable.h"
-#include "Expressions/ShantingYardAlgorithem.h"
+#include "ShantingYardAlgorithem.h"
 #include "ParametersSeperation.h"
 #include <algorithm>
 #include <iostream>

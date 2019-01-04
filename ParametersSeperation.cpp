@@ -118,7 +118,7 @@ vector<string>::iterator ParametersSeperation:: getEndIteratorOfFirstDetectedExp
         return it - 1;
 
 
-    //',' char is an explicit seperator between to word in a script.
+    //',' char is an explicit seperator between two word in a script.
     }else if( (it + 1  == end || *(it + 1) == ",") && !this->isOperator(*it) && !whetherInScopes) {
 
         return it;
@@ -228,21 +228,4 @@ int ParametersSeperation:: getNumOfWordsInExpressions(vector<vector<string>> exp
     }
     return retValue;
 }
-/*
-int main(int argc, const char *argv[]) {
-    ParametersSeperation p;
-    vector<string> v;
-    string input;
-    cin >> input;
-    while(input != "END") {
-        v.push_back(input);
-        cin >> input;
-    }
-    int numArgs;
-    cin >> numArgs;
-    vector<vector<string>> seperatedV = p.SplitToParameters(v, numArgs);
-    return 0;
 
-}
-
-*/

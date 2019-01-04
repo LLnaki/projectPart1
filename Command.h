@@ -8,7 +8,7 @@
 
 #include <string>
 #include <list>
-#include "Expressions/ShantingYardAlgorithem.h"
+#include "ShantingYardAlgorithem.h"
 #include "SymbolTable.h"
 #include "ParametersSeperation.h"
 using namespace std;

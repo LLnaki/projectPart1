@@ -3,10 +3,10 @@
 //
 
 
-#include "Expressions/Expression.h"
+#include "Expression.h"
 #include "SymbolTable.h"
 #include "CommandFromStringFactory.h"
-#include "Expressions/CommandExpression.h"
+#include "CommandExpression.h"
 #include "OpenServerCommand.h"
 #include "ConnectCommand.h"
 #include "DefineVarCommand.h"

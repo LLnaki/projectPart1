@@ -21,7 +21,7 @@ class ConditionCommand : public Command {
 private:
     map<string, Operators> possibleOperators;
 
-protected:  //I CHANGED THIS TWO MEMBERS FROM PUBLIC TO PROTECTED. PAY ATTENTION THAT IT DOESN'T LEAD TO BUGS.
+protected:
     vector<string> condition;
     //The script which belongs to this condition command.
     vector<string> innerCommands;

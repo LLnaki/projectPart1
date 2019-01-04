@@ -7,10 +7,15 @@
 
 
 #include "Expression.h"
-
+/**
+*This class defines expressions which always have two components(expressions), on which
+* a calculation of expression is performed.
+*/
 class BinaryExpression : public Expression {
 private:
+	//First component.
     Expression *first;
+	//Second component.
     Expression *second;
 public:
     BinaryExpression(Expression *first, Expression *second);

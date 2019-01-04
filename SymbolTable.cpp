@@ -59,9 +59,6 @@ map<string, double> SymbolTable::GetSymbolTable() {
     return returnMap;
 }
 
-/**
- * I should send to Dorin this function. It sets a value only if such var exist.
- */
 void SymbolTable::setValue(string var, double value) {
     pthread_mutex_lock(this->mutex);
     bool isFoundAmongExistedVariables = false;
@@ -350,8 +347,8 @@ void SymbolTable::interruptConnectionToServer() {
     }
     this->isConnectedToServer = false;
 }
-void SymbolTable::tuneForCooperationWithClient(pthread_mutex_t* mut) {
-    //this->mutex = mut;
+void SymbolTable::tuneForCooperationWithClient() {
+
     this->isClientConnectedToSymbolTable = true;
 }
 

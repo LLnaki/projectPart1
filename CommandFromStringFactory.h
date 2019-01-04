@@ -6,7 +6,7 @@
 #define FIRSTMILESTONE_COMMANDFROMSTRINGFACTORY_H
 
 #include <map>
-#include "Expressions/CommandExpression.h"
+#include "CommandExpression.h"
 #include <pthread.h>
 #include "CommandsInterpreter.h"
 #define OPEN_DATA_SERVER "openDataServer"

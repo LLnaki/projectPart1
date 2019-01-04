@@ -13,7 +13,7 @@
 #include "Number.h"
 #include "Neg.h"
 #include "ShantingYardAlgorithem.h"
-#include "Commands/SymbolTable.h"
+#include "SymbolTable.h"
 #include <iostream>
 #include <cmath>
 using namespace std;

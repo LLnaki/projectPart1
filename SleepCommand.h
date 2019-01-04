@@ -7,7 +7,10 @@
 
 
 #include "Command.h"
-
+/**
+*This class represents a command which sleeps a programm execution for a given number
+* of miliseconds.
+*/
 class SleepCommand : public Command {
     int miliSecSleep;
 public:

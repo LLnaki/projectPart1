@@ -17,6 +17,8 @@ int SleepCommand::doCommand(vector<string>& argsAndRestScript) {
     if (this->miliSecSleep < 0) {
         __throw_invalid_argument("Invalid parameter to SleepCommand.");
     }
+	//The uspleep function sleeps the thread for microseconds. Multiplying it by 1000, we sleep it on
+	// the same value, but as miliseconds.
     usleep(this->miliSecSleep * 1000);
     return expressions[0].size();
 }

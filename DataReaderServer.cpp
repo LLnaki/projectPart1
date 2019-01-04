@@ -72,15 +72,20 @@ void DataReaderServer::read(SymbolTable* symbolTable) {
     }
 
     chrono:: milliseconds millisecondsPerSecond(MILLISECONDS_IN_SECOND);
-
+	//Couter of times of reading from the client by this server.
     int counter = 0;
     auto start = chrono::steady_clock::now();
     auto end = chrono::steady_clock::now() ;
     while (*(this->isReadingActivated)) {
+	/*If in previous second we read 'timesOfReadingPerSecond' times and there is some time to complete this second,
+	*we will stop program on this rest time in order to accomplish a requirement of reading 'timesOfReadingPerSecond'
+	*times from the client. After full second will pass, we will initalize the conter.
+	*/
         if (counter > this->timesOfReadingPerSecond &&
         chrono::duration_cast<chrono::milliseconds>(end-start).count() < millisecondsPerSecond.count() ) {
             usleep((millisecondsPerSecond.count() - (end - start).count() ) / MILLISECONDS_IN_SECOND );
             start = chrono::steady_clock::now();
+	    counter = 0; 
         }
         char buffer[BUFFER_SIZE];
         /* If connection is established then start communicating */

@@ -1,10 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "Commands/CommandsInterpreter.h"
+#include "CommandsInterpreter.h"
 #include <pthread.h>
 using namespace std;
-
+/**
+*The main function that uses CommandInterpreter and commandLine arguments to execute a script of
+*the fligh-conrol language.
+*@param argv - a path to a file with a script to execute. 
+*/
 int main(int argc, const char *argv[]) {
     CommandsInterpreter l;
     ifstream idFile;

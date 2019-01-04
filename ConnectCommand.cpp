@@ -5,7 +5,7 @@
 #include <vector>
 #include <sstream>
 #include "ConnectCommand.h"
-#include "Expressions/ShantingYardAlgorithem.h"
+#include "ShantingYardAlgorithem.h"
 #include "DataClient.h"
 #include "ParametersSeperation.h"
 #include <algorithm>
