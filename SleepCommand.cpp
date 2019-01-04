@@ -7,7 +7,6 @@
 #include "CommandsInterpreter.h"
 #include "ParametersSeperation.h"
 #include <unistd.h>
-#include <iostream>
 int SleepCommand::doCommand(vector<string>& argsAndRestScript) {
     ParametersSeperation separator;
     vector<vector<string>> expressions = separator.SplitToParameters(argsAndRestScript, 1);
@@ -19,7 +18,6 @@ int SleepCommand::doCommand(vector<string>& argsAndRestScript) {
         __throw_invalid_argument("Invalid parameter to SleepCommand.");
     }
     usleep(this->miliSecSleep * 1000);
-    cout <<"after sleeping in sleepCommand.cpp" << endl;
     return expressions[0].size();
 }
 
