@@ -14,7 +14,6 @@
 #include "SymbolTable.h"
 #include "VarValuesPaths.h"
 #include <chrono>
-#include <iostream>
 #define MILLISECONDS_IN_SECOND 1000
 using namespace std;
     DataReaderServer:: DataReaderServer(int portNumber, int timesOfReadingInSec,
@@ -71,32 +70,28 @@ void DataReaderServer::read(SymbolTable* symbolTable) {
         perror("ERROR on accept");
         exit(1);
     }
-    //pthread_cond_signal(this->condVariable);
 
-   // chrono:: milliseconds millisecondsPerSecond(MILLISECONDS_IN_SECOND);
+    chrono:: milliseconds millisecondsPerSecond(MILLISECONDS_IN_SECOND);
 
-   // int counter = 0;
-   // auto start = chrono::steady_clock::now();
-   // auto end = chrono::steady_clock::now() ;
+    int counter = 0;
+    auto start = chrono::steady_clock::now();
+    auto end = chrono::steady_clock::now() ;
     while (*(this->isReadingActivated)) {
-       // if (counter > this->timesOfReadingPerSecond &&
-        //chrono::duration_cast<chrono::milliseconds>(end-start).count() < millisecondsPerSecond.count() ) {
-         //   usleep((millisecondsPerSecond.count() - (end - start).count() ) / MILLISECONDS_IN_SECOND );
-         //   start = chrono::steady_clock::now();
-        //}
+        if (counter > this->timesOfReadingPerSecond &&
+        chrono::duration_cast<chrono::milliseconds>(end-start).count() < millisecondsPerSecond.count() ) {
+            usleep((millisecondsPerSecond.count() - (end - start).count() ) / MILLISECONDS_IN_SECOND );
+            start = chrono::steady_clock::now();
+        }
         char buffer[BUFFER_SIZE];
         /* If connection is established then start communicating */
         bzero(buffer, BUFFER_SIZE);
-        int count = 0;
         n =::read(newsockfd, buffer, BUFFER_SIZE - 1);
         if (n < 0) {
             perror("ERROR reading from socket");
             exit(1);
         }
         vector<string> valuesAsStrings = symbolTable->split(string(buffer));
-        //if (!this->adjustRecievedData(symbolTable, buffer, valuesAsStrings)) {
-       //     continue;
-      //  }
+       
         this->adjustRecievedData(symbolTable, buffer, valuesAsStrings);
 
         int i = 0;
@@ -104,11 +99,11 @@ void DataReaderServer::read(SymbolTable* symbolTable) {
         for (auto it = valuesAsStrings.begin(); it != valuesAsStrings.end() && i < NUM_OF_PASSED_VALUES; ++it, ++i) {
             this->setValueFromServer(stod(*it), i, symbolTable);
         }
-        cout<<"In DataReaderServer.cpp" << endl;
+      
         pthread_cond_signal(this->condVariable);
 
-        //++counter;
-        //end = chrono::steady_clock::now();
+        ++counter;
+        end = chrono::steady_clock::now();
     }
     close(sockfd);
     pthread_cond_signal(this->condVariable);

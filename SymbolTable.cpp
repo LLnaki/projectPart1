@@ -3,7 +3,6 @@
 //
 
 #include "SymbolTable.h"
-#include <iostream>
 #define VAR_VALUE_FILE "./VariablesValues.txt"
 #define LINK_INDICATOR_IN_FILE "Link:"
 #define PATH_WORD_FOR_LINK_WITHOUT_PATH "-withoutPath-"
@@ -35,14 +34,6 @@ bool SymbolTable:: isDouble(const string& s)
 }
 
 
-
-/*map<string, double> SymbolTable::GetSymbolTable() {
-    return this->varStringToItsValue;
-}*/
-
-/*void SymbolTable::setValue(string var, double value) {
-    this->varStringToItsValue[var] = value;
-}*/
 /**
  * The function returns symbolTable, not including variables of links that have not
  * values.
@@ -94,7 +85,7 @@ void SymbolTable::setValue(string var, double value) {
         this->linksWithoutValues.erase(*itOfFound);
         delete itOfFound;
     }
-    cout<<"in SymbolTable.cpp in setValue function." << endl;
+ 
     pthread_mutex_unlock(this->mutex);
 }
 
@@ -233,40 +224,6 @@ void SymbolTable::saveMap() {
     // Closing the VAR_VALUE_FILE file.
     variablesVal.close();
 }
-/*void SymbolTable::loadMap() {
-    ifstream variablesVal;
-    // Opening the VAR_VALUE_FILE file.
-    variablesVal.open(VAR_VALUE_FILE, ios::in);
-    string line, varName;
-    double value;
-
-    // As long as we still have lines to read from the file.
-    while (getline(variablesVal, line)) {
-        // Splitting the line into the variable's name and it's value.
-        auto v = split(line);
-        varName = v[0];
-        value = stod(v[1]);
-
-        this->varStringToItsValue[varName] = value;
-    }
-
-    // Closing the VAR_VALUE_FILE file.
-    variablesVal.close();
-}*/
-
-/*void SymbolTable::saveMap() {
-    ofstream variablesVal;
-    // Opening the VAR_VALUE_FILE file.
-    variablesVal.open(VAR_VALUE_FILE, ios::trunc);    // delete all file content
-
-    // Saving all the variables and their values to the DB file.
-    for (auto &v: this->varStringToItsValue) {
-        variablesVal << v.first << "," << to_string(v.second) << endl;
-    }
-
-    // Closing the VAR_VALUE_FILE file.
-    variablesVal.close();
-}*/
 
 
 void SymbolTable::bindNewVarToExistingLink(string newVar, string anotherVarInThisLink) {
